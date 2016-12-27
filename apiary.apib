@@ -1,0 +1,115 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# quest
+
+Quest api is a simple API allowing consumers to create quastionaries and take them.
+
+# Group Questions
+
+## Questions Collection [/questions]
+
+### List all Questions [GET]
+
++ Request
+
+    + Header
+
+            Accept: application/json
+
++ Response 200 (application/json)
+
+    + Body
+
+            [{
+                "id": 1,
+                "question": "Favourite programming language?",
+                "choices": [
+                    "Swift",
+                    "Python",
+                    "Objective-C",
+                    "Ruby"
+                ],
+                "created_at": "2016-12-23T17:20:12Z",
+                "updated_at": "2016-12-23T17:20:12Z"
+            }]
+
+### Create a New Question [POST]
+
+You may create your own question using this action. It takes a JSON
+object containing a question and a collection of answers in the
+form of choices.
+
++ Request (application/json)
+
+    + Attributes
+        + `question` (string, required) - Valid UTF-8 string representing markdown
+        + `choices` (enum[string], optional) - List of printable UTF-8 strings
+        
+    + Header
+
+            Accept: application/json
+
+    + Body
+    
+            {
+                "id": 1,
+                "question": "Favourite programming language?",
+                "choices": [
+                    "Swift",
+                    "Python",
+                    "Objective-C",
+                    "Ruby"
+                ],
+                "created_at": "2016-12-23T17:20:12Z",
+                "updated_at": "2016-12-23T17:20:12Z"
+            }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /questions/2
+
+
+## Question [/questions/{id}]
+
++ Parameters
+    + id: 1 (number)
+        Question identifier
+
++ Attributes
+    + `id` (number, required) - Question identifier
+    + `question` (string, required)
+    + `choices` (enum[string], optional)
+    + `created_at` (string, required) - ISO8601-encoded timestamp
+    + `updated_at` (string, required) - ISO8601-encoded timestamp
+
+### Fetch a Question [GET]
+
++ Request
+
+    + Header
+
+            Accept: application/json
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id": 1,
+                "question": "Favourite programming language?",
+                "choices": [
+                    "Swift",
+                    "Python",
+                    "Objective-C",
+                    "Ruby"
+                ],
+                "created_at": "2016-12-23T17:20:12Z",
+                "updated_at": "2016-12-23T17:20:12Z"
+            }
+
+### Remove a Question [DELETE]
+
++ Response 204
