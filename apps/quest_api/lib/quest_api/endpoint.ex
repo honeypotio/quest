@@ -36,5 +36,6 @@ defmodule QuestApi.Endpoint do
     key: "_quest_api_key",
     signing_salt: "ooDjX8Zj"
 
+  plug Corsica, origins: "*"
   plug QuestApi.Router
 end
