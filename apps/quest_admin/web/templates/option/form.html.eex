@@ -18,15 +18,9 @@
   </div>
 
   <div class="form-group">
-    <%= label f, :created_by, class: "control-label" %>
-    <%= number_input f, :created_by, class: "form-control" %>
-    <%= error_tag f, :created_by %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :updated_by, class: "control-label" %>
-    <%= number_input f, :updated_by, class: "form-control" %>
-    <%= error_tag f, :updated_by %>
+    <%= label f, :question_id, class: "control-label" %>
+    <%= select f, :question_id, @questions, class: "form-control" %>
+    <%= error_tag f, :question_id %>
   </div>
 
   <div class="form-group">

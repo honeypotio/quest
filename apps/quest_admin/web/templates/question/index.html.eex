@@ -6,8 +6,6 @@
       <tr>
         <th>Code</th>
         <th>Body</th>
-        <th>Created by</th>
-        <th>Updated by</th>
 
         <th></th>
       </tr>
@@ -17,8 +15,6 @@
       <tr>
         <td><%= question.code %></td>
         <td><%= question.body %></td>
-        <td><%= question.created_by %></td>
-        <td><%= question.updated_by %></td>
 
         <td class="text-right">
           <%= link "Show", to: question_path(@conn, :show, question), class: "btn btn-default btn-xs" %>

@@ -8,9 +8,13 @@ defmodule QuestAdmin.OptionController do
     render(conn, "index.html", options: options)
   end
 
+  def new(conn, %{"option" => option_params}) do
+    changeset = Option.changeset(%Option{}, option_params)
+    render(conn, "new.html", changeset: changeset, questions: questions)
+  end
   def new(conn, _params) do
     changeset = Option.changeset(%Option{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset, questions: questions)
   end
 
   def create(conn, %{"option" => option_params}) do
@@ -22,7 +26,7 @@ defmodule QuestAdmin.OptionController do
         |> put_flash(:info, "Option created successfully.")
         |> redirect(to: option_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, questions: questions)
     end
   end
 
@@ -34,7 +38,7 @@ defmodule QuestAdmin.OptionController do
   def edit(conn, %{"id" => id}) do
     option = Repo.get!(Option, id)
     changeset = Option.changeset(option)
-    render(conn, "edit.html", option: option, changeset: changeset)
+    render(conn, "edit.html", option: option, changeset: changeset, questions: questions)
   end
 
   def update(conn, %{"id" => id, "option" => option_params}) do
@@ -47,7 +51,7 @@ defmodule QuestAdmin.OptionController do
         |> put_flash(:info, "Option updated successfully.")
         |> redirect(to: option_path(conn, :show, option))
       {:error, changeset} ->
-        render(conn, "edit.html", option: option, changeset: changeset)
+        render(conn, "edit.html", option: option, questions: questions, changeset: changeset)
     end
   end
 
@@ -61,5 +65,9 @@ defmodule QuestAdmin.OptionController do
     conn
     |> put_flash(:info, "Option deleted successfully.")
     |> redirect(to: option_path(conn, :index))
+  end
+
+  defp questions do
+    Repo.all(QuestAdmin.Question) |> Enum.map(&{&1.code, &1.id})
   end
 end

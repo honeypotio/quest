@@ -16,7 +16,8 @@ defmodule QuestApi.Option do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:code, :body, :created_by, :updated_by])
-    |> validate_required([:code, :body, :created_by, :updated_by])
+    |> cast(params, [:code, :body, :created_by, :updated_by, :question_id])
+    |> validate_required([:code, :body, :question_id])
+    |> unique_constraint(:code)
   end
 end

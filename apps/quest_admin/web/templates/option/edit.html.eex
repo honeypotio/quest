@@ -1,6 +1,8 @@
-<h2>Edit option</h2>
+<div class="col-xs-10 col-xs-offset-1 page-content">
+  <h2>Edit option</h2>
 
-<%= render "form.html", changeset: @changeset,
-                        action: option_path(@conn, :update, @option) %>
+  <%= render "form.html", changeset: @changeset, questions: @questions,
+  action: option_path(@conn, :update, @option) %>
 
-<%= link "Back", to: option_path(@conn, :index) %>
+  <%= link "Back", to: option_path(@conn, :index) %>
+</div>

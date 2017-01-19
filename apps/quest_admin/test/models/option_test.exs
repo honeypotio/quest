@@ -3,7 +3,7 @@ defmodule QuestAdmin.OptionTest do
 
   alias QuestAdmin.Option
 
-  @valid_attrs %{body: "some content", code: "some content", created_by: 42, updated_by: 42}
+  @valid_attrs %{body: "some content", code: "some content", created_by: 42, updated_by: 42, question_id: 1}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

@@ -8,7 +8,7 @@ defmodule QuestAdmin.Option do
     field :updated_by, :integer
     belongs_to :question, QuestAdmin.Question
 
-    timestamps()
+    timestamps(inserted_at: :created_at)
   end
 
   @doc """
@@ -16,7 +16,8 @@ defmodule QuestAdmin.Option do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:code, :body, :created_by, :updated_by])
-    |> validate_required([:code, :body, :created_by, :updated_by])
+    |> cast(params, [:code, :body, :question_id, :created_by, :updated_by])
+    |> validate_required([:code, :body, :question_id])
+    |> unique_constraint(:code)
   end
 end

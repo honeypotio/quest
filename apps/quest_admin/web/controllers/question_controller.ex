@@ -28,7 +28,8 @@ defmodule QuestAdmin.QuestionController do
 
   def show(conn, %{"id" => id}) do
     question = Repo.get!(Question, id)
-    render(conn, "show.html", question: question)
+    question_with_options = Repo.preload(question, :options)
+    render(conn, "show.html", question: question_with_options)
   end
 
   def edit(conn, %{"id" => id}) do

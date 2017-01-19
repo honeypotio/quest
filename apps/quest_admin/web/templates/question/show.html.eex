@@ -18,13 +18,11 @@
     </li>
 
     <li>
-      <strong>Created by:</strong>
-      <%= @question.created_by %>
-    </li>
-
-    <li>
-      <strong>Updated by:</strong>
-      <%= @question.updated_by %>
+      <strong>Options:</strong>
+      <%= for option <- @question.options do %>
+        <%= link option.code, to: option_path(@conn, :show, option) %>
+      <% end %>
+      <%= link "New", to: option_path(@conn, :new, option: %{question_id: @question.id}) %>
     </li>
 
   </ul>

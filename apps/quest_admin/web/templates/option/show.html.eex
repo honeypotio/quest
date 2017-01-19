@@ -1,33 +1,25 @@
-<h2>Show option</h2>
+<div class="col-xs-10 col-xs-offset-1 page-content">
+  <h2>Show option</h2>
 
-<ul>
+  <ul>
 
-  <li>
-    <strong>Code:</strong>
-    <%= @option.code %>
-  </li>
+    <li>
+      <strong>Code:</strong>
+      <%= @option.code %>
+    </li>
 
-  <li>
-    <strong>Body:</strong>
-    <%= @option.body %>
-  </li>
+    <li>
+      <strong>Body:</strong>
+      <%= @option.body %>
+    </li>
 
-  <li>
-    <strong>Created by:</strong>
-    <%= @option.created_by %>
-  </li>
+    <li>
+      <strong>Question:</strong>
+      <%= link @option.question_id, to: question_path(@conn, :show,  @option.question_id), class: "btn btn-default btn-xs" %>
+    </li>
 
-  <li>
-    <strong>Updated by:</strong>
-    <%= @option.updated_by %>
-  </li>
+  </ul>
 
-  <li>
-    <strong>Question:</strong>
-    <%= @option.question_id %>
-  </li>
-
-</ul>
-
-<%= link "Edit", to: option_path(@conn, :edit, @option) %>
-<%= link "Back", to: option_path(@conn, :index) %>
+  <%= link "Edit", to: option_path(@conn, :edit, @option) %>
+  <%= link "Back", to: option_path(@conn, :index) %>
+</div>

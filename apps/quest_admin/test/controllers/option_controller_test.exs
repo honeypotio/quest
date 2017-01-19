@@ -1,7 +1,9 @@
 defmodule QuestAdmin.OptionControllerTest do
   use QuestAdmin.ConnCase
 
+  alias QuestAdmin.Question
   alias QuestAdmin.Option
+  @question_attrs %Question{code: "XYZQA", body: "What is the best programming language?"}
   @valid_attrs %{body: "some content", code: "some content", created_by: 42, updated_by: 42}
   @invalid_attrs %{}
 
@@ -16,7 +18,8 @@ defmodule QuestAdmin.OptionControllerTest do
   end
 
   test "creates resource and redirects when data is valid", %{conn: conn} do
-    conn = post conn, option_path(conn, :create), option: @valid_attrs
+    question = Repo.insert!(@question_attrs)
+    conn = post conn, option_path(conn, :create), option: Map.put(@valid_attrs, :question_id, question.id)
     assert redirected_to(conn) == option_path(conn, :index)
     assert Repo.get_by(Option, @valid_attrs)
   end
@@ -27,7 +30,9 @@ defmodule QuestAdmin.OptionControllerTest do
   end
 
   test "shows chosen resource", %{conn: conn} do
-    option = Repo.insert! %Option{}
+    question = Repo.insert!(@question_attrs)
+    option = Ecto.build_assoc(question, :options, Map.put(@valid_attrs, :question_id, question.id))
+              |> Repo.insert!
     conn = get conn, option_path(conn, :show, option)
     assert html_response(conn, 200) =~ "Show option"
   end
@@ -45,7 +50,9 @@ defmodule QuestAdmin.OptionControllerTest do
   end
 
   test "updates chosen resource and redirects when data is valid", %{conn: conn} do
-    option = Repo.insert! %Option{}
+    question = Repo.insert!(@question_attrs)
+    option = Ecto.build_assoc(question, :options, Map.put(@valid_attrs, :question_id, question.id))
+              |> Repo.insert!
     conn = put conn, option_path(conn, :update, option), option: @valid_attrs
     assert redirected_to(conn) == option_path(conn, :show, option)
     assert Repo.get_by(Option, @valid_attrs)

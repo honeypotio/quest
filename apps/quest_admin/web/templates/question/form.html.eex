@@ -18,18 +18,6 @@
   </div>
 
   <div class="form-group">
-    <%= label f, :created_by, class: "control-label" %>
-    <%= number_input f, :created_by, class: "form-control" %>
-    <%= error_tag f, :created_by %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :updated_by, class: "control-label" %>
-    <%= number_input f, :updated_by, class: "form-control" %>
-    <%= error_tag f, :updated_by %>
-  </div>
-
-  <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>

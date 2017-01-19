@@ -42,10 +42,11 @@ defmodule QuestApi.OptionControllerTest do
   end
 
   test "creates and renders resource when data is valid", %{conn: conn} do
+    question = Repo.insert!(@question_attrs)
     conn = conn
       |> put_req_header("accept", "application/vnd.api+json")
       |> put_req_header("content-type", "application/vnd.api+json")
-      |> post(option_path(conn, :create), option: @valid_attrs)
+      |> post(option_path(conn, :create), option: Map.put(@valid_attrs, :question_id, question.id))
     assert json_response(conn, 201)["data"]["id"]
     assert Repo.get_by(Option, @valid_attrs)
   end
@@ -56,7 +57,9 @@ defmodule QuestApi.OptionControllerTest do
   end
 
   test "updates and renders chosen resource when data is valid", %{conn: conn} do
-    option = Repo.insert! %Option{}
+    question = Repo.insert!(@question_attrs)
+    option = Ecto.build_assoc(question, :options, Map.put(@valid_attrs, :question_id, question.id))
+              |> Repo.insert!
     conn = put conn, option_path(conn, :update, option), option: @valid_attrs
     assert json_response(conn, 200)["data"]["id"]
     assert Repo.get_by(Option, @valid_attrs)
