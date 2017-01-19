@@ -1,0 +1,34 @@
+<div class="col-xs-10 col-xs-offset-1 page-content">
+  <h2>Show question</h2>
+
+  <ul>
+    <li>
+      <strong>Id:</strong>
+      <%= @question.id %>
+    </li>
+
+    <li>
+      <strong>Code:</strong>
+      <%= @question.code %>
+    </li>
+
+    <li>
+      <strong>Body:</strong>
+      <%= @question.body %>
+    </li>
+
+    <li>
+      <strong>Created by:</strong>
+      <%= @question.created_by %>
+    </li>
+
+    <li>
+      <strong>Updated by:</strong>
+      <%= @question.updated_by %>
+    </li>
+
+  </ul>
+
+  <%= link "Edit", to: question_path(@conn, :edit, @question) %>
+  <%= link "Back", to: question_path(@conn, :index) %>
+</div>

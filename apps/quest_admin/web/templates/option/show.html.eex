@@ -1,0 +1,33 @@
+<h2>Show option</h2>
+
+<ul>
+
+  <li>
+    <strong>Code:</strong>
+    <%= @option.code %>
+  </li>
+
+  <li>
+    <strong>Body:</strong>
+    <%= @option.body %>
+  </li>
+
+  <li>
+    <strong>Created by:</strong>
+    <%= @option.created_by %>
+  </li>
+
+  <li>
+    <strong>Updated by:</strong>
+    <%= @option.updated_by %>
+  </li>
+
+  <li>
+    <strong>Question:</strong>
+    <%= @option.question_id %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: option_path(@conn, :edit, @option) %>
+<%= link "Back", to: option_path(@conn, :index) %>

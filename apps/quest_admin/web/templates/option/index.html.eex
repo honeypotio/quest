@@ -1,0 +1,34 @@
+<h2>Listing options</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Body</th>
+      <th>Created by</th>
+      <th>Updated by</th>
+      <th>Question</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for option <- @options do %>
+    <tr>
+      <td><%= option.code %></td>
+      <td><%= option.body %></td>
+      <td><%= option.created_by %></td>
+      <td><%= option.updated_by %></td>
+      <td><%= option.question_id %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: option_path(@conn, :show, option), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: option_path(@conn, :edit, option), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: option_path(@conn, :delete, option), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New option", to: option_path(@conn, :new) %>
