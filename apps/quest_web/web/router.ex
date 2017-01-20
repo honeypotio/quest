@@ -23,4 +23,6 @@ defmodule QuestWeb.Router do
   # scope "/api", QuestWeb do
   #   pipe_through :api
   # end
+  forward "/admin", QuestAdmin.Router
+  forward "/api", QuestApi.Router
 end
