@@ -1,4 +1,6 @@
-<div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}", name: "Quest!" %></h2>
-  <p class="lead">The best questionnaire world has seen.</p>
+<div class="col-xs-10 col-xs-offset-1 page-content">
+  <div class="jumbotron">
+    <h2><%= gettext "Welcome to %{name}", name: "Quest!" %></h2>
+    <p class="lead">The best questionnaire world has seen.</p>
+  </div>
 </div>

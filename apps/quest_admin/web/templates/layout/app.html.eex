@@ -10,6 +10,7 @@
     <title>Hello QuestAdmin!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
+
   <body class="Site">
     <header>
       <div class="col-xs-6">
