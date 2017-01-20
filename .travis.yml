@@ -3,3 +3,8 @@ elixir:
   - 1.3.4
 otp_release:
   - 19.2
+services:
+  - postgresql
+before_script:
+  - mix ecto.create
+  - mix ecto.migrate
