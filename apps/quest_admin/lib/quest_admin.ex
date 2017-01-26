@@ -11,7 +11,7 @@ defmodule QuestAdmin do
       # Start the Ecto repository
       supervisor(QuestAdmin.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(QuestAdmin.Endpoint, []),
+      # supervisor(QuestAdmin.Endpoint, []),
       # Start your own worker by calling: QuestAdmin.Worker.start_link(arg1, arg2, arg3)
       # worker(QuestAdmin.Worker, [arg1, arg2, arg3]),
     ]
