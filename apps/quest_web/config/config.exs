@@ -5,6 +5,10 @@
 # is restricted to this project.
 use Mix.Config
 
+# General application configuration
+config :quest_admin,
+  ecto_repos: []
+
 # Configures the endpoint
 config :quest_web, QuestWeb.Endpoint,
   url: [host: "localhost"],
